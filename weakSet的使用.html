@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        // WeakSet  和 Set 的区别   
+        // WeakSet 只能存放对象结构的数据
+        // 创建weakSet  也是只能 new WeakSet  不能字面量的方式创建
+
+        const weak = new WeakSet();
+        // 区别1  只能存放 对象的数据类型
+        // weak.add(1) //  Invalid value used in weak set at WeakSet.add
+        weak.add({name:123})
+        // 区别二 对 对象是一个弱引用    弱引用对于gc来说 垃圾回收机制 还是会回收的
+        // 但是 还是可以取到里面的值 来进行使用
+
+        console.log(weak);  //  WeakSet {}
+        var obj = {age:18}
+        weak.add(obj)
+        console.log(weak);
+        obj = null;
+        console.log(weak);  //  此时的 weak 里面的 obj还是存在的
+
+
+        var set = new Set();
+
+        var obj1 = {name:123}
+
+        set.add(obj1)
+        console.log(set);
+        obj1 = null;
+        console.log(set);
+
+        // weakSet 是不能遍历的
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        //  数组的解构 
+        
+        var arr = ['yi','er','san'];
+
+        var  [item1,] = arr; //  从arr数组中解构的值   取值的时候 会从第一位开始 依次取值
+         console.log(item1);  //  yi
+
+
+        // 对象的解构
+
+        var obj = {
+            name:'123',
+            age:'22'
+        }
+
+        var {name, age} = obj;//  对象是根据key值来解构的   而且是没有顺序的限制
+        console.log(name, age);   // 123 22
+        var {name, age,height = 100} = obj;  // 当解构对象中没有的值的时候 默认是undefined 我们可以给上默认值
+        console.log(height);  // 100   
+
+        // 对解构出来的值  进行重命名
+        var {name: newName} = obj;
+        console.log(newName);  // 123  此时我们解构出来的key  不叫name  叫了newName
+ 
+
+
+
+
+    </script>
+    
+</body>
+</html>

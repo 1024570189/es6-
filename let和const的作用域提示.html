@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        // let  和 const 是 没有作用域提升的 ！！
+
+        console.log(aaa);  //  未捕获的ReferenceError:在初始化at之前不能访问'aaa'  
+        // let aaa = '123';  //  Uncaught ReferenceError: Cannot access 'aaa' before initializationat
+        //  在访问 aaa 的时候  aaa的变量也是已经被创建的，只是不能被访问！！
+        // let 和const 会在执行上下文的时候被 创建  但是没有进行作用域提升 
+
+        
+
+
+
+    </script>
+    
+
+</body>
+</html>

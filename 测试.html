@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        var arr = [{ id: 2, value: '222222' }, { id: 3, value: '333333' }, { id: 4, value: '444444' }];
+
+        var s = [2, 3];
+        var ss = [1, 2, 3, 4, 5, 6]
+        console.log(ss.indexOf(s),'==');
+        arr.map((item) => {
+            return ss.push(item.id)
+        })
+
+        let arr1 = [1, 2, 3];
+        let arr2 = [
+            { str: 'a', num: 1 },
+            { str: 'as', num: 2 },
+            { str: 'b', num: 3 },
+            { str: 'ca', num: 4 },
+            { str: 'c', num: 5 },
+            { str: 'ddd', num: 6 },
+        ]
+
+        let arr3 = [];
+
+        arr2.forEach((item) => {
+            if (arr1.indexOf(item.num) > -1) {
+                arr3.push(item)
+            }
+        })
+
+        // arr1.forEach((item) => {
+        //     arr2.forEach((element) => {
+        //         if (item == element.num) {
+        //             arr3.push(element)
+        //         }
+        //     })
+        //     // return arr3
+        // })
+        console.log(arr3);
+    </script>
+
+</body>
+
+</html>

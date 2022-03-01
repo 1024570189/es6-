@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+        integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+    　
+</head>
+
+<body>
+
+    <div style="width: 433px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer;"
+        class="btn btn-default pxDiv" data-container="body" data-toggle="popover" data-placement="bottom"
+        data-trigger="hover" data-content="111111111111111111111111111111asdasdasdasdassfasdfasdfasdfasdfd">
+        111111111111111111111111111111111111111111
+    </div>
+
+
+
+    <script>
+
+        $(function () {
+
+            var dd = document.querySelector('.pxDiv');
+            var ddValue = dd.innerText;
+            // console.log('dd'.pxWidth('normal 16px Robot'));
+            console.log($('.pxDiv').width(),'==');
+            if (getTextWidth(ddValue,"normal 16px sans-serif") > $('.pxDiv').width()) {
+                $('[data-toggle="popover"]').popover()
+            }
+
+            console.log(getTextWidth(ddValue,"normal 16px sans-serif"))
+
+
+            function getTextWidth(text, font) {
+                // re-use canvas object for better performance
+                var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+                var context = canvas.getContext("2d");
+                context.font = font;
+                var metrics = context.measureText(text);
+                return metrics.width;
+            }
+        })
+
+
+
+
+            // map 的数据结构  它的key 是运行我们用对象类型 来作为key的
+
+            const map = new Map();
+            var obj1 = { name: '111' }
+            var obj2 = { name: '222' }
+            // map 的增加方法是 set 
+            map.set(obj1, '我是obj1')
+            map.set(obj2, '我是obj2')
+            console.log(map);
+            // 0: {Object => "我是obj1"}
+            // 1: {Object => "我是obj2"}
+
+            // const map2  = new Map([[key,value]])
+            const map2 = new Map([[obj1, '我是1'], [obj2, '我是2']])
+            console.log(map2);
+            // 0: {Object => "我是1"}
+            // key: {name: '111'}
+            // value: "我是1"
+            // 1: {Object => "我是2"}
+            // key: {name: '222'}
+            // value: "我是2"
+
+
+            // map的方法
+            // set 增加 
+            // get 获取
+            console.log(map2.get(obj1));  // 我是1
+            map2.set('hwd', 22)
+            console.log(map2.get('hwd',));  // 22
+            // has 查找
+            console.log(map2.has('hwd')); // true
+            // delete  删除 
+            map2.delete('hwd')  // delete 也是又返回值的  删除成功是 true
+            // clear 清空map
+            // map2.clear();
+
+            // 遍历map  foreach   for of
+            // foreach  是 item  当前项 和当前的key  key
+            map2.forEach((item, key) => {
+                console.log(item, key); //  我是1 {name: '111'}
+            });
+
+
+            // 银行卡号 小案例
+            var  str = '6212261116001487407';
+
+            var sss = [1,2,3,4,5]
+            var vv = str.slice(-4)
+            var yhk = vv.padStart(str.length,'*')
+            console.log(yhk);
+    </script>
+
+</body>
+
+</html>

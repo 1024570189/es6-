@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // WeakMap 的 key必须是个对象
+        // 应用场景 vue3响应式原理
+
+        const obj1 = {
+            name: 'hwd',
+            age: 18
+        }
+        //   把 obj1NameFn1 和 obj1NameFn2   和obj1 的 name 绑定到一起 
+        function obj1NameFn1() {
+            console.log('obj1NameFn1被执行')
+        }
+        function obj1NameFn2() {
+            console.log('obj1NameFn2被执行')
+        }
+        function obj1AgeFn1() {
+            console.log('obj1AgeFn1被执行')
+        }
+        function obj1AgeFn2() {
+            console.log('obj1AgeFn2被执行')
+        }
+
+        const obj2 = {
+            name: 'obj2',
+            age: 22,
+            address: '重庆'
+        }
+
+        // const map = new Map();
+        // map.set(name, [obj1NameFn1, obj1NameFn2])
+        // console.log(map,'map')   //  {'':Arra y(2)}   0:{''=> Array(2)}  key:'',value:Array(2) 0:obj1NameFn1,1:obj1NameFn2 
+
+
+        //  对obj1的数据结构的收集
+        const weakMap = new WeakMap();
+        const obj1Map = new Map();
+        obj1Map.set('name',[obj1NameFn1,obj1NameFn2])
+        obj1Map.set('age',[obj1AgeFn1,obj1AgeFn2])
+        weakMap.set(obj1,obj1Map)
+        console.log(weakMap,'weakMap')
+
+        // 如果这个时候 obj1的name改变 
+        // 需要通过Proxy 或者 Object.defineProperty  监听   只需要监听某一个对象里面 某一个属性的改变  即可  监听 obj1.name  
+
+        Object.defineProperty(obj1,'name',{
+            // get  访问  set 更改  
+            get:function () {  
+                console.log('get')
+            },
+            set:function (value) {  
+                console.log('set')
+                const targetMap = weakMap.get(obj1)  //  先取到map
+                const funMap = targetMap.get('name')  //  再取到map   
+                console.log(funMap,'funMap')  // 0: ƒ obj1NameFn1()     1: ƒ obj1NameFn1()
+                funMap.forEach(element => {
+                    element()//  拿到当前的 item  也就是 function  再去执行即可
+                    // obj1NameFn1
+                    //  obj1NameFn2
+                });
+            }
+        })
+
+        obj1.name = '更改之后的obj1的name';
+   
+        // weakMap.set(obj1, map);
+        // console.log(weakMap, 'weakMap')
+        // // obj1.name = '更改之后的obj1的name'
+        // // console.log(weakMap,'weakMap')
+        // console.log(map.get(name, 'map的get拿到的name'))//  [ƒ, ƒ]  0:obj1NameFn1,1:obj1NameFn2 
+        // map.forEach(item => {
+        //     console.log(item,'map遍历的item')
+        // })
+
+    </script>
+</body>
+
+</html>

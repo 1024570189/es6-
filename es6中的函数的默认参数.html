@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // 函数的形参 提供默认值
+        function  foo(n = 1, m = 2) {
+            console.log(n,m);
+        }
+        foo();  // 1 2
+        foo(2,3); //  2,3
+
+
+        // es5 中的 形参 bug 
+
+        function fo (m,n)  {
+            m = m || '1';
+            n = n || '2';
+            console.log(m,n);  // 1 2
+        }
+        fo();
+        fo(0,''); //  1 2   判断不严谨 容易出 bug
+
+        // es5 中的 严谨一些的解决方式
+        function bar(m,n) {
+            m = arguments.length > 0 && arguments[0] != undefined ? arguments[0] : '1';
+            n = arguments.length > 0 && arguments[1] != undefined ? arguments[1] : '2';
+            console.log(m,n);
+        }
+        bar(); // 1 2
+        bar(0,''); // 0 ''
+
+
+        // 对象参数 默认值 以及解构
+
+        function printInfo(name = 'hwd',age = 12) {  
+            console.log(name, age);
+        }
+
+        printInfo() // hwd 12
+        printInfo('111',22) // 111 22 
+        
+
+        function printInfo1({name,age} = {name:'hwd',age:'22'}) {  
+            console.log(name,age);
+        }
+        printInfo1(); //hwd 22
+        printInfo1( {name:'hhh',age:'66'});  // hhh 66
+
+        // 另外一种写法
+        function printInfo1({name = 'hwd',age ='22'} = {}) {  
+            console.log(name,age);
+        }
+        printInfo1(); //hwd 22
+        printInfo1( {name:'hhh',age:'66'});  // hhh 66
+
+
+
+    </script>
+</body>
+
+</html>

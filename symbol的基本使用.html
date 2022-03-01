@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+
+        // es6新增的 symbol 的数据类型 
+        // symbol 声明的值 必定是 独一无二的  symbol 是一个函数
+        console.log(Symbol(1) == Symbol(1));   //  false
+        // symbol 之前  对象的属性值 key值 都是字符串 很容易造成冲突 
+        ///     这个时候  一样的key值 必定会被  覆盖掉 !!!
+        console.log(typeof( Symbol(1)));  // symbol
+
+
+
+        // Symbol 作为对象key的写法
+        var s1 = Symbol();
+        var s2 = Symbol();
+         var obj = {
+            [s1]: 'hwd',
+            [s2]:22
+         }
+         console.log(obj);  // {Symbol(): 'hwd', Symbol(): 22}
+        //  Symbol 新增对象属性
+        var s3 = Symbol();
+        obj[s3] = '我是新增的symbol的属性'
+        console.log(obj);  // {Symbol(): 'hwd', Symbol(): 22, Symbol(): '我是新增的symbol的属性'}
+
+        // 使用symbol 做为对象的key 的时候  使用for  使用 object.keys  时候 是获取不到的
+        console.log(Object.keys(obj));  //  []
+
+        // 获取 symbol 作为key 的办法
+        // Object.getOwnPropertySymbols()
+        console.log(Object.getOwnPropertySymbols(obj));  //  (3) [Symbol(), Symbol(), Symbol()]
+
+        const sKeys = Object.getOwnPropertySymbols(obj);  //   [Symbol(), Symbol(), Symbol()]
+        console.log(sKeys);
+        for (const sKey of sKeys) {
+            console.log(obj[sKey]);
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        let a = '123';
+        // var a = '456'; 
+        //  Uncaught SyntaxError: Identifier 'a' has already been declared 
+        // 报错  第一点  let声明的变量是不允许 重复声明的！！！
+
+
+
+        // const 是 constant 单词的缩写  常量
+
+        const aa = '123';
+        // aa = '4567';  // Uncaught TypeError: Assignment to constant variable.  
+        //  const 声明的常量 是不允许 修改的！！！
+        //  const 本质上的值 是不允许修改的  但是如果值是一个引用类型  引用类型的 值 是可以修改的
+        
+        const obj = {
+            name:'123'
+        }
+        obj.name = '234';
+        console.log(obj);  //  {name: '234'}
+
+
+        //  let 和 const 声明的变量名 都是不允许二次 声明的！！
+
+    </script>
+    
+</body>
+</html>

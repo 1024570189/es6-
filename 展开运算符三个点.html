@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+
+
+        // 函数调用时候的展开运算
+        var arr = ['abc','cba'];
+        function foo(a,b) {
+            console.log(a,b);
+        }
+        foo(...arr); // abc cba
+
+        // 字符串也是可以展开的  
+        var str = 'hello world';
+        foo(...str); // h e
+        console.log(...str); //  h e l l o   w o r l d
+
+        // 构造数组时的展开运算符
+        const result  = [...arr];
+        console.log(result);  // (2) ['abc', 'cba']
+
+        // 支持多个展开 
+        console.log([...arr,...str]);  //   ['abc', 'cba', 'h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+
+        // 对象的展开运算符 
+        var obj ={name:'hwd',age:22};
+        console.log({...obj,address:'重庆'}); //  {name: 'hwd', age: 22, address: '重庆'}
+        // 如果把数组 展开到对象中 是根据 index 索引 放进去的
+
+        // 展开运算符 就是浅拷贝放进去展开的 
+        var info  = {
+            age:'22',
+            friend: {name:'aaa'}
+        }
+
+        var info2 = {...info};
+        info2.friend.name = 'bbb'
+        // 此时修改info2的内容  info 也是会跟着变化的
+        console.log(info);  //  age: "22"  friend: {name: 'bbb'}
+        console.log(info2);  //  age: "22"  friend: {name: 'bbb'}
+
+
+        // 测试
+        var o = {name:'abc',age:44}
+        console.log(o);  // {name: 'abc', age: 44}
+        var oo = {...o,address:'重庆'}
+        console.log(oo);   // {name: 'abc', age: 44, address: '重庆'}
+
+        oo.age = 18;
+        console.log(o,);
+        console.log(oo);
+        
+        var res = Object.assign({},o)
+        console.log(res); //  {name: 'abc', age: 18}
+
+        // 最简单的深拷贝
+
+        var cloneObj = {
+            namne:'obj1',
+            friend:{
+                name:'我是修改前的name',
+                age:'12312'
+            }
+        }
+        
+        var cloneObj2 =  JSON.parse(JSON.stringify(cloneObj));
+        cloneObj.friend.name = '我是修改后的name';
+        console.log(cloneObj);   // friend: {name: '我是修改后的name', age: '12312'}
+        console.log(cloneObj2);  // friend: {name: '我是修改前的name', age: '12312'}
+ 
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+
+        // 如果我们的最后的一个参数  是 ...开头的  他会将剩余的参数放到一个数组中 做为剩余参数
+
+        function foo(a,...c) {   //  ...不是展开运算符  这里的...不是展开运算符
+            //  剩余参数 必须放到形参的最后一位
+            console.log(c);  // [2, 3, 4, 5]
+            console.log(arguments);
+            // Arguments(5) [1, 2, 3, 4, 5, callee: (...), Symbol(Symbol.iterator): ƒ]
+            //     0: 1
+            //     1: 2
+            //     2: 3
+            //     3: 4
+            //     4: 5
+
+            // rest 剩余参数  和 arguments  不一样的是  rest剩余参数 是一个真正的数组 不是一个伪数组！！
+            // rest 剩余参数 是数组  可以使用数组额所有方法 
+        }
+        foo(1,2,3,4,5);  // 
+
+
+        // （）=》{} 箭头函数 是没有显示原型的  prototype  是不能 new 的 ！！
+        // 显示原型 prototype  隐式原型  __proto__
+
+    </script>
+    
+</body>
+</html>
